@@ -1,8 +1,7 @@
 from django.conf.urls import url
-
-from .views import show_todo, get_todo
+from . import views
 
 urlpatterns = [
-    url(r'^$', show_todo),
-    url(r'^(?P<todo_id>[0-9]+)', get_todo)
+    url(r'^$', views.indexTodo),
+    url(r'^(?P<todo_pk>[0-9]+)', views.specificTodo)
 ]

@@ -1,18 +1,13 @@
-from django.shortcuts import render
-
-# Create your views here.
+from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import my_todos
+from .models import Todo_List
 
-def show_todo(request):
-    return render(request, "todo_list.html", {"todos": my_todos})
+def indexTodo(request):
+    return render(request, "todo.html", {"Todo_List":Todo_List})
 
-
-def get_todo(request, todo_id):
+def specificTodo(request, todo_pk):
     try:
-        return HttpResponse(my_todos[int(todo_id)])
+        return HttpResponse(Todo_List[int(todo_pk)-1])
     except IndexError:
-        raise Http404("We don't have any.")
-
+        raise Http404("There is nothing to show")
